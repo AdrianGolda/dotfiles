@@ -3,7 +3,6 @@ alias upgrade="sudo apt upgrade"
 alias upgradey="sudo apt upgrade -y"
 alias vimrc="vim ~/.vimrc"
 alias fixpaste='printf "\e[?2004l"'
-alias cdpr='cd ~/Pulpit/PR/'
 alias cdt='cd ~/.config/terminator'
 mounted(){
     mount -v | grep "^/" | awk '{print "\nPartition identifier: " $1  "\n Mountpoint: "  $3}'
@@ -15,7 +14,11 @@ alias lsdd='ls -d .*/'
 
 alias cls="printf '\033c'"
 alias cd..="cd .."
-alias ..="cd .."
+function cd_up() {
+  cd $(printf "%0.0s../" $(seq 1 $1));
+}
+alias ..="cd_up"
+alias 'cd..'='cd_up'
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 alias pscsgo='psg csgo | awk "{print $2}"'
 
