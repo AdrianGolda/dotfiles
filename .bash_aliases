@@ -1,4 +1,6 @@
 alias aliases="vim ~/.bash_aliases && source ~/.bash_aliases"
+alias upgrade="sudo apt upgrade"
+alias upgradey="sudo apt upgrade -y"
 alias vimrc="vim ~/.vimrc"
 alias fixpaste='printf "\e[?2004l"'
 alias cdpr='cd ~/Pulpit/PR/'
