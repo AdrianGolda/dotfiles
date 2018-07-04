@@ -8,6 +8,8 @@ mounted(){
     mount -v | grep "^/" | awk '{print "\nPartition identifier: " $1  "\n Mountpoint: "  $3}'
 }
 
+alias lookup='python3 ~/code/python/html_parser.py'
+
 alias cs='cd;ls'
 alias lsd='ls -d */'
 alias lsdd='ls -d .*/'
@@ -29,19 +31,8 @@ function cd_
   cd "$@"
 }
 
-cdb(){
-    COUNT=$1
-    if [ -z ${COUNT} ]; then
-        COUNT=1
-    fi
-    for (( COUNT=1; c<=COUNT; c++ ))
-    do
-	`cd ..`
-    done
-}
-
-alias explore='dolphin .'
-alias suexplore='sudo dolphin .'
+alias explore='nemo .'
+alias suexplore='sudo nemo .'
 
 alias try='gnome-open'
 alias text='gedit &'
@@ -54,15 +45,19 @@ alias q='exit'
 
 cl () { cd $@ && ls -F; }
 
-alias cdd='cd ~/Pobrane'
-alias cdp='cd ~/Pulpit'
+if [ "$LANG" != "en_US.UTF-8" ]; then
+    alias cdd='cd ~/Pobrane'
+    alias cdp='cd ~/Pulpit'
+else
+    alias cdd='cd ~/Downloads'
+    alias cdp='cd ~/Desktop'
+fi
+alias cds='cd /mnt/shared'
+alias cdmn='cd /mnt/shared/PG/MN/MN2'
+
+alias cdb='cd ~/Books'
 alias cdv='cd ~/.vim'
 alias cdSteam='cd ~/.local/share/Steam/steamapps/common/Counter-Strike\ Global\ Offensive'
-
-alias cdc='cd ~/programming/c'
-alias cdcpp='cd ~/programming/c++'
-alias cdass='cd ~/programming/assembly'
-alias cdjava='cd ~/programming/java'
 
 alias update='sudo apt-get update'
 
@@ -124,3 +119,6 @@ FILE=$1
     fi
     
 }
+
+alias governors='cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors'
+alias governor='cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor'
