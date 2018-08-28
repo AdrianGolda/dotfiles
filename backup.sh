@@ -5,3 +5,4 @@ cp ~/.vimrc .
 git add -u
 git commit -m "dotfiles update"
 git push
+cp ~/.vim/.config/ . -r
