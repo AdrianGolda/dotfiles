@@ -2,7 +2,7 @@
 cp ~/.bashrc .
 cp ~/.bash_aliases .
 cp ~/.vimrc .
-cp ~/.vim/.config/ . -r
+cp -r ~/.vim/.config/ .
 git add -u
 git commit -m "dotfiles update"
 git push
