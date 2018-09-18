@@ -2,4 +2,4 @@
 cp .bashrc ~
 cp .bash_aliases ~
 cp .vimrc ~
-cp .config ~/.vim/
+cp -r .config ~/.vim/
