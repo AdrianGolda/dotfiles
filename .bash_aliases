@@ -1,5 +1,6 @@
 alias aliases="vim ~/.bash_aliases && source ~/.bash_aliases"
 alias vimrc="vim ~/.vimrc"
+alias pip="pip3"
 
 alias lookup='python3 ~/code/python/html_parser.py'
 
@@ -99,3 +100,4 @@ mkcdir ()
     mkdir -p -- "$1" &&
       cd -P -- "$1"
 }
+
