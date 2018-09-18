@@ -1,6 +1,10 @@
 alias aliases="vim ~/.bash_aliases && source ~/.bash_aliases"
 alias vimrc="vim ~/.vimrc"
-alias pip="pip3"
+
+res_ether_module(){
+    sudo modprobe -r r8169
+    sudo modprobe -i r8169
+}
 
 alias lookup='python3 ~/code/python/html_parser.py'
 
@@ -100,4 +104,3 @@ mkcdir ()
     mkdir -p -- "$1" &&
       cd -P -- "$1"
 }
-

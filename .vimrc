@@ -19,12 +19,12 @@ call plug#begin()
     Plug 'jiangmiao/auto-pairs'
     "Plug 'maralla/completor.vim'
     Plug 'Raimondi/delimitMate'
-    "Plug 'Shougo/deoplete.nvim'
+    Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
 
 " Python
-    "Plug 'davidhalter/jedi-vim'
+    Plug 'davidhalter/jedi-vim'
     Plug 'tell-k/vim-autopep8'
     Plug 'Vimjas/vim-python-pep8-indent'
     Plug 'vim-scripts/django.vim'
@@ -101,5 +101,3 @@ source ~/.vim/.config/remappings.vim
 source ~/.vim/.config/hexmode.vim
 source ~/.vim/.config/folds.vim
 source ~/.vim/.config/delimitmate.vim
-
-let g:UltiSnipsSnippetDirectories=["~/.vim/plugins/vim-snippets/snippets","~/.vim/plugins/vim-snippets/UltiSnips"]
