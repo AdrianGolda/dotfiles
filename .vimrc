@@ -101,5 +101,6 @@ source ~/.vim/.config/remappings.vim
 source ~/.vim/.config/hexmode.vim
 source ~/.vim/.config/folds.vim
 source ~/.vim/.config/delimitmate.vim
+source ~/.vim/.config/minimap.vim
 
 let g:UltiSnipsSnippetDirectories=["~/.vim/plugins/vim-snippets/snippets","~/.vim/plugins/vim-snippets/UltiSnips"]
