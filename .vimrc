@@ -28,18 +28,18 @@ call plug#begin()
     Plug 'tell-k/vim-autopep8'
     Plug 'Vimjas/vim-python-pep8-indent'
     Plug 'vim-scripts/django.vim'
+    Plug 'python-rope/ropevim'
 
 " C/C++
-    Plug 'rhysd/vim-clang-format'
-    Plug 'uplus/vim-clang-rename'
-    Plug 'vim-scripts/Conque-GDB'
+    Plug 'rhysd/vim-clang-format', {'for': ['cpp'] }
+    Plug 'uplus/vim-clang-rename', {'for': ['cpp'] }
+    Plug 'vim-scripts/Conque-GDB', {'for': ['cpp'] }
 
 " HTML
     Plug 'ap/vim-css-color'
+    Plug 'gregsexton/MatchTag'
 
 " Misc
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
     Plug 'morhetz/gruvbox'
     Plug 'Yggdroot/indentLine'
 
@@ -56,6 +56,8 @@ set hlsearch
 set autoindent
 set noexpandtab
 set sw=4
+
+hi CursorLine cterm=underline
 
 " Uncategorized
 au BufNewFile,BufRead *.html set filetype=htmldjango
