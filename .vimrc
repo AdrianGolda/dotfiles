@@ -39,6 +39,9 @@ call plug#begin()
     Plug 'ap/vim-css-color'
     Plug 'gregsexton/MatchTag'
 
+" Django
+    Plug 'tweekmonster/django-plus.vim'
+
 " Misc
     Plug 'morhetz/gruvbox'
     Plug 'Yggdroot/indentLine'
