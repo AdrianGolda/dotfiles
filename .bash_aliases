@@ -13,7 +13,7 @@ function cd_up() {
 alias ..="cd_up"
 alias 'cd..'='cd_up'
 
-if [ "$LANG" != "en_US.UTF-8" ]; then
+if [ "$LANG" != "en_US.UTF-8" || $LANG != "en_GB.utf8"]; then
     alias cdd='cd ~/Pobrane'
     alias cdp='cd ~/Pulpit'
 else
