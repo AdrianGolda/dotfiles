@@ -43,6 +43,7 @@ call plug#begin()
     Plug 'tweekmonster/django-plus.vim'
 
 " Misc
+    Plug 'vim-airline/vim-airline'
     Plug 'morhetz/gruvbox'
     Plug 'Yggdroot/indentLine'
 

@@ -1,12 +1,13 @@
 alias aliases="vim ~/.bash_aliases && source ~/.bash_aliases"
+alias locals="vim ~/.local_aliases"
+alias ci3="vim ~/.i3/config"
 alias vimrc="vim ~/.vimrc"
 alias pip="pip3"
 
-alias cs='cd;ls'
 alias lsd='ls -d */'
-alias lsdd='ls -d .*/'
 
 alias cls="printf '\033c'"
+
 function cd_up() {
     cd $(printf "%0.0s../" $(seq 1 $1));
 }

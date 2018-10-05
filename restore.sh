@@ -1,4 +1,5 @@
 #!/bin/bash
+cp -r .i3 ~
 cp .bashrc ~
 cp .bash_aliases ~
 cp .vimrc ~
