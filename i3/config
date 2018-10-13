@@ -1,5 +1,5 @@
 # set vim: conf:
-set $mod Mod4
+set $mod Mod1
 
 set $workspace1 "1:web"
 set $workspace2 "2:console"
@@ -21,7 +21,7 @@ floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+r exec dmenu_run
@@ -147,12 +147,14 @@ bar {
 
 
 for_window [class="Spotify"] move window to workspace $workspace10
+for_window [class="terminator"] move window to workspace $workspace2
+#assign [class="Terminator"] $workspace2
 
 exec xinput set-prop 14 329 1
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 2 toggle # mute sound
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness

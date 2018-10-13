@@ -17,7 +17,7 @@ call plug#begin()
     Plug 'tpope/vim-surround'
     Plug 'terryma/vim-expand-region'
     Plug 'jiangmiao/auto-pairs'
-    "Plug 'maralla/completor.vim'
+    Plug 'maralla/completor.vim'
     Plug 'Raimondi/delimitMate'
     Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
