@@ -3,7 +3,7 @@ set $mod Mod1
 
 set $workspace1 "1:web"
 set $workspace2 "2:console"
-set $workspace3 "3"
+set $workspace3 "3:files"
 set $workspace4 "4"
 set $workspace5 "5"
 set $workspace6 "6"
@@ -69,10 +69,10 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+shift+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -115,26 +115,20 @@ bindsym $mod+Control+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym j resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym j resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Up resize grow height 10 px or 10 ppt
+    bindsym Down resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Up resize grow height 10 px or 10 ppt
-        bindsym Down resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 
 bindsym $mod+x mode "resize"
@@ -142,13 +136,14 @@ bindsym $mod+x mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+    status_command i3status
 }
 
 
 for_window [class="Spotify"] move window to workspace $workspace10
 for_window [class="terminator"] move window to workspace $workspace2
-#assign [class="Terminator"] $workspace2
+for_window [class="nemo"] move window to workspace $workspace3
+assign [class="nemo"] $workspace3
 
 exec xinput set-prop 14 329 1
 # Pulse Audio controls

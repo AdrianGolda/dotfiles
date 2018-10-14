@@ -24,7 +24,6 @@ call plug#begin()
     Plug 'roxma/vim-hug-neovim-rpc'
 
 " Python
-    "Plug 'davidhalter/jedi-vim'
     Plug 'tell-k/vim-autopep8'
     Plug 'Vimjas/vim-python-pep8-indent'
     Plug 'vim-scripts/django.vim'
