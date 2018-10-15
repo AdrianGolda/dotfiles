@@ -9,6 +9,7 @@ let g:jedi#popup_select_first=0
 inoremap <expr> <c-k> pumvisible() ? "\<C-p>" : "\<Tab>"
 inoremap <expr> <c-j> pumvisible() ? "\<C-n>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
 let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/UltiSnips']
 let g:completor_min_chars = 1

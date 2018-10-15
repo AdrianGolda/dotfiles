@@ -19,9 +19,10 @@ call plug#begin()
     Plug 'jiangmiao/auto-pairs'
     Plug 'maralla/completor.vim'
     Plug 'Raimondi/delimitMate'
-    Plug 'Shougo/deoplete.nvim'
+    "Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
+    Plug 'ervandew/supertab'
 
 " Python
     Plug 'tell-k/vim-autopep8'
