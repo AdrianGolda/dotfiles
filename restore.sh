@@ -1,5 +1,6 @@
 #!/bin/bash
 cp -r i3 ~/.config
+cp -r i3status ~/.config
 cp .bashrc ~
 cp .bash_aliases ~
 cp .vimrc ~
