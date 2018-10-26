@@ -152,8 +152,11 @@ bindsym XF86AudioLowerVolume exec --no-startup-id amixer sset Master 5%- #decrea
 bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master 1+ toggle # mute sound
 
 # Sreen brightness controls
+exec sudo ~/.config/i3/brightness.sh
 bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
+bindsym Shift+XF86MonBrightnessUp exec light -A 1 # increase screen brightness
 bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
+bindsym Shift+XF86MonBrightnessDown exec light -U 1 # decrease screen brightness
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
