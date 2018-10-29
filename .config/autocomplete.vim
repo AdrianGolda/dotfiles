@@ -14,3 +14,5 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/UltiSnips']
 let g:completor_min_chars = 1
 let g:completor_python_binary = '/usr/bin/python3'
+let g:completor_clang_binary = '/usr/bin/clang'
+

@@ -6,7 +6,7 @@ call plug#begin()
 " Generic
     Plug 'sirver/UltiSnips'
     Plug 'honza/vim-snippets'
-    Plug 'vim-syntastic/syntastic'
+    "Plug 'vim-syntastic/syntastic'
     Plug 'scrooloose/nerdcommenter'
     Plug 'craigemery/vim-autotag'
     Plug 'severin-lemaignan/vim-minimap'
@@ -94,7 +94,6 @@ nnoremap <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 "theme source
 colorscheme gruvbox
 set background=dark
-set completeopt-=preview
 
 source ~/.vim/.config/autocomplete.vim
 source ~/.vim/.config/autopep.vim
@@ -110,3 +109,5 @@ source ~/.vim/.config/delimitmate.vim
 source ~/.vim/.config/minimap.vim
 
 let g:UltiSnipsSnippetDirectories=["~/.vim/plugins/vim-snippets/snippets","~/.vim/plugins/vim-snippets/UltiSnips"]
+
+set completeopt-=preview

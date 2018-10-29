@@ -6,8 +6,6 @@ nnoremap <Down> <Nop>
 "jj to esc
 inoremap jj <Esc>
 
-set completeopt=longest,menuone
-
 " remapings
 imap <C-q> <Esc>
 nnoremap YY :%y+<CR>
@@ -72,3 +70,6 @@ nnoremap tt  :tabedit<Space>
 nnoremap tn  :tabnext<Space>
 nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
+
+nmap <S-Enter> Ojjj
+nmap <CR> ojjk
