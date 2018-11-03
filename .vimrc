@@ -19,7 +19,6 @@ call plug#begin()
     Plug 'jiangmiao/auto-pairs'
     Plug 'maralla/completor.vim'
     Plug 'Raimondi/delimitMate'
-    "Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
     Plug 'ervandew/supertab'
@@ -36,7 +35,7 @@ call plug#begin()
     Plug 'vim-scripts/Conque-GDB', {'for': ['cpp'] }
 
 " HTML
-    Plug 'ap/vim-css-color'
+    Plug 'chrisbra/Colorizer'
     Plug 'gregsexton/MatchTag'
 
 " Django
@@ -64,6 +63,9 @@ set sw=4
 hi CursorLine cterm=underline
 
 " Uncategorized
+if &filetype==""
+    setfiletype conf
+endif
 au BufNewFile,BufRead *.html set filetype=htmldjango
 map <s-k> <Plug>(expand_region_expand)
 map <s-j> <Plug>(expand_region_shrink)
