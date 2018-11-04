@@ -6,15 +6,30 @@ alias ci3s="bash ~/.config/i3/i3.sh"
 alias vimrc="vim ~/.vimrc"
 alias pip="pip3"
 
+
+alias cp='cp -iv'                           # Preferred 'cp' implementation
+alias mv='mv -iv'                           # Preferred 'mv' implementation
+alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
+alias l='ls -FGlAhp'                        # Preferred 'ls' implementation
+alias ls='ls -GFh --color=always'                          # Preferred 'ls' implementation
+alias less='less -FSRXc'                    # Preferred 'less' implementation
 alias lsd='ls -d */'
 
 alias cls="printf '\033c'"
 
 function cd_up() {
     cd $(printf "%0.0s../" $(seq 1 $1));
+    ls --color=always;
 }
 alias ..="cd_up"
 alias 'cd..'='cd_up'
+function cd() {
+    new_directory="$*";
+    if [ $# -eq 0 ]; then 
+        new_directory=${HOME};
+    fi;
+    builtin cd "${new_directory}" && ls --color=always
+}
 
 if [ "$LANG" != "en_US.UTF-8" ] && [ "$LANG" != "en_GB.utf8" ]; then
     alias cdd='cd ~/Pobrane'
