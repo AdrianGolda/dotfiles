@@ -19,13 +19,12 @@ alias cls="printf '\033c'"
 
 function cd_up() {
     cd $(printf "%0.0s../" $(seq 1 $1));
-    ls --color=always;
 }
 alias ..="cd_up"
 alias 'cd..'='cd_up'
 function cd() {
     new_directory="$*";
-    if [ $# -eq 0 ]; then 
+    if [ $# -eq 0 ]; then
         new_directory=${HOME};
     fi;
     builtin cd "${new_directory}" && ls --color=always
@@ -40,6 +39,7 @@ else
 fi
 
 alias cdv='cd ~/.vim'
+alias gis='git status'
 
 alias hibernate='systemctl hibernate'
 alias suspend='systemctl suspend'

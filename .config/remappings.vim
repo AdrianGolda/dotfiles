@@ -10,7 +10,7 @@ inoremap jj <Esc>
 imap <C-q> <Esc>
 nnoremap YY :%y+<CR>
 
-nnoremap <space><cr> :nohlsearch<cr>
+nnoremap <space><cr> :set hlsearch! hlsearch?<cr>
 
 noremap <space>y "*y
 noremap <space>Y "*Y

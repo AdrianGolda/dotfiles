@@ -4,7 +4,7 @@ cp -r i3blocks ~/.config
 cp .bashrc ~
 cp .bash_aliases ~
 cp .vimrc ~
-cp -r .config ~/.vim/
+cp -r .config ~/.vim
 cp .zshrc ~
 
 if [[ ! -d /home/$USER/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]]; then

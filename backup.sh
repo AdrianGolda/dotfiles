@@ -4,5 +4,5 @@ cp -r ~/.config/i3blocks .
 cp ~/.bashrc .
 cp ~/.bash_aliases .
 cp ~/.vimrc .
-cp -r ~/.vim/.config/ .
+cp -r ~/.vim/.config .
 cp ~/.zshrc .
