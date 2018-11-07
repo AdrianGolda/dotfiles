@@ -150,10 +150,9 @@ assign [class="nemo"] $workspace3
 set $height 10
 for_window [class="(?i)gsimplecal"] floating enable, move position mouse, move down $height px
 
-exec xinput set-prop 14 329 1
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -c 1 sset Master 5%+; exec pkill -RTMIN+10 i3blocks #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 1 sset Master 5%-; exec pkill -RTMIN+10 i3blocks #decrease sound volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/sound.sh UP 5
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/sound.sh DOWN 5
 bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master 1+ toggle # mute sound
 
 # Sreen brightness controls
