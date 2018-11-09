@@ -153,7 +153,7 @@ for_window [class="(?i)gsimplecal"] floating enable, move position mouse, move d
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/sound.sh UP 5
 bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/sound.sh DOWN 5
-bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master 1+ toggle # mute sound
+bindsym XF86AudioMute exec --no-startup-id ~/.config/i3/sound.sh MUTE
 
 # Sreen brightness controls
 exec sudo ~/.config/i3/brightness.sh
@@ -172,4 +172,9 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym $mod+F5 exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
 bindsym $mod+F7 exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
 bindsym $mod+F6 exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+
+bindsym Print exec shutter -s
+bindsym Shift+Print exec shutter
+
+exec --no-startup-id i3-msg workspace $workspace1;
 set $mod Mod4

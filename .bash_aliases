@@ -5,6 +5,7 @@ alias ci3l="vim ~/.config/i3/config.local && bash ~/.config/i3/i3.sh"
 alias ci3s="bash ~/.config/i3/i3.sh"
 alias vimrc="vim ~/.vimrc"
 alias pip="pip3"
+alias gis="git status"
 
 
 alias cp='cp -iv'                           # Preferred 'cp' implementation
@@ -46,6 +47,15 @@ alias suspend='systemctl suspend'
 
 alias governors='cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors'
 alias governor='cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor'
+change_background() {
+    FILE="'file://$(readlink -e "$1" )'"
+    if [ "$FILE" != "'file://'" ]
+    then
+        gsettings set org.gnome.desktop.background picture-uri "$FILE"
+    else
+        echo "File doesn't exist"
+    fi
+}
 
 untar(){
     FILE=$1
