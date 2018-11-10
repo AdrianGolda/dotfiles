@@ -177,3 +177,4 @@ bindsym Print exec shutter -s
 bindsym Shift+Print exec shutter
 
 exec --no-startup-id i3-msg workspace $workspace1;
+workspace_layout tabbed
