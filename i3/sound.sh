@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -x
 
-CURR_SINK=`pacmd list-sinks | awk '/index:/{i++} /* index:/{print i; exit}'`
+CURR_SINK=`pacmd list-sinks | grep "* index" | awk '{print $3}'`
 VALUE=$2
 CURR_VOL=`pacmd list-sinks | awk '/^\svolume:/{i++} i=='$CURR_SINK'{print $5; exit}' | tr -d %`
 MAX_VOL=150
