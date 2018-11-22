@@ -41,6 +41,9 @@ call plug#begin()
 " Django
     Plug 'tweekmonster/django-plus.vim'
 
+" Javascript
+    Plug 'maksimr/vim-jsbeautify', {'for': ['js'] }
+
 " Misc
     Plug 'vim-airline/vim-airline'
     Plug 'morhetz/gruvbox'
@@ -62,7 +65,7 @@ set sw=4
 
 hi CursorLine cterm=underline
 
-" Uncategorized
+""""""""""""""" Uncategorized
 if &filetype==""
     setfiletype conf
 endif
@@ -72,6 +75,7 @@ map <s-j> <Plug>(expand_region_shrink)
 
 set list
 set cursorline
+set mouse=a
 
 match ErrorMsg '\%>120v.\+'
 match ErrorMsg '\s\+$'
@@ -109,6 +113,7 @@ source ~/.vim/.config/hexmode.vim
 source ~/.vim/.config/folds.vim
 source ~/.vim/.config/delimitmate.vim
 source ~/.vim/.config/minimap.vim
+source ~/.vim/.config/plugins.vim
 
 let g:UltiSnipsSnippetDirectories=["~/.vim/plugins/vim-snippets/snippets","~/.vim/plugins/vim-snippets/UltiSnips"]
 
