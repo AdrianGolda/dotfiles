@@ -6,7 +6,7 @@ call plug#begin()
 " Generic
     Plug 'sirver/UltiSnips'
     Plug 'honza/vim-snippets'
-    "Plug 'vim-syntastic/syntastic'
+    Plug 'vim-syntastic/syntastic'
     Plug 'scrooloose/nerdcommenter'
     Plug 'craigemery/vim-autotag'
     Plug 'severin-lemaignan/vim-minimap'
@@ -83,6 +83,23 @@ match ErrorMsg '\s\+$'
 set path+=**
 set wildmenu
 command! MakeTags !ctags -R .
+
+" Plugins
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+" syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+    let g:syntastic_mode_map = {
+        \ "mode": "active",
+        \ "active_filetypes": ["ruby"],
+        \ "passive_filetypes": ["python"] }
+
+" Deoplete
 let g:deoplete#enable_at_startup = 1
 
 let g:indentLine_char='|'
