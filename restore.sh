@@ -5,6 +5,7 @@ cp .bashrc ~
 cp .bash_aliases ~
 cp .vimrc ~
 cp -r .config ~/.vim
+cp -r UltiSnips ~/.vim
 cp .zshrc ~
 
 if [[ ! -d /home/$USER/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]]; then

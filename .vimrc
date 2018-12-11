@@ -17,7 +17,6 @@ call plug#begin()
     Plug 'terryma/vim-expand-region'
     Plug 'jiangmiao/auto-pairs'
     Plug 'maralla/completor.vim'
-    "Plug 'Raimondi/delimitMate'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
     Plug 'ervandew/supertab'
@@ -110,10 +109,9 @@ source ~/.vim/.config/nerdtree.vim
 source ~/.vim/.config/remappings.vim
 source ~/.vim/.config/hexmode.vim
 source ~/.vim/.config/folds.vim
-source ~/.vim/.config/delimitmate.vim
 source ~/.vim/.config/minimap.vim
 source ~/.vim/.config/plugins.vim
 
-let g:UltiSnipsSnippetDirectories=["~/.vim/UltiSnips"]
+let g:UltiSnipsSnippetDir=["~/.vim/UltiSnips"]
 
 set completeopt-=preview
