@@ -6,7 +6,6 @@ call plug#begin()
 " Generic
     Plug 'sirver/UltiSnips'
     Plug 'honza/vim-snippets'
-    Plug 'vim-syntastic/syntastic'
     Plug 'scrooloose/nerdcommenter'
     Plug 'craigemery/vim-autotag'
     Plug 'severin-lemaignan/vim-minimap'
@@ -18,7 +17,7 @@ call plug#begin()
     Plug 'terryma/vim-expand-region'
     Plug 'jiangmiao/auto-pairs'
     Plug 'maralla/completor.vim'
-    Plug 'Raimondi/delimitMate'
+    "Plug 'Raimondi/delimitMate'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
     Plug 'ervandew/supertab'
@@ -83,23 +82,6 @@ match ErrorMsg '\s\+$'
 set path+=**
 set wildmenu
 command! MakeTags !ctags -R .
-
-" Plugins
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-" syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-    let g:syntastic_mode_map = {
-        \ "mode": "active",
-        \ "active_filetypes": ["ruby"],
-        \ "passive_filetypes": ["python"] }
-
-" Deoplete
 let g:deoplete#enable_at_startup = 1
 
 let g:indentLine_char='|'
@@ -132,6 +114,6 @@ source ~/.vim/.config/delimitmate.vim
 source ~/.vim/.config/minimap.vim
 source ~/.vim/.config/plugins.vim
 
-let g:UltiSnipsSnippetDirectories=["~/.vim/plugins/vim-snippets/snippets","~/.vim/plugins/vim-snippets/UltiSnips"]
+let g:UltiSnipsSnippetDirectories=["~/.vim/UltiSnips"]
 
 set completeopt-=preview

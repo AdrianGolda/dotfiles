@@ -25,6 +25,8 @@ noremap <leader>P "+P
 nnoremap <c-s-tab> gT
 nnoremap <c-tab> gt
 
+inoremap <s-tab> <c-d>
+
 nnoremap <space>a ggVG
 
 vnoremap > >gv
