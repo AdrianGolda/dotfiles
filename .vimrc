@@ -114,4 +114,5 @@ source ~/.vim/.config/plugins.vim
 
 let g:UltiSnipsSnippetDir=["~/.vim/UltiSnips"]
 
-set completeopt-=preview
+let g:completor_complete_options = 'menuone,noselect'
+

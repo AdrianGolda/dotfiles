@@ -11,6 +11,11 @@ snippet #! "Shebang header for python scripts" b
 $0
 endsnippet
 
+snippet p "Print" b
+print($1)
+$0
+endsnippet
+
 snippet ifmain "ifmain" b
 if __name__ == `!p snip.rv = get_quoting_style(snip)`__main__`!p snip.rv = get_quoting_style(snip)`:
 	${1:${VISUAL:main()}}
