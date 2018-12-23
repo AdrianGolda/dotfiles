@@ -100,3 +100,4 @@ alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 eval $(thefuck --alias)
 eval $(thefuck --alias FUCK)
+export TERM=xterm-256color

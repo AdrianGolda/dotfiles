@@ -7,3 +7,4 @@ cp ~/.vimrc .
 cp -r ~/.vim/.config .
 cp -r ~/.vim/UltiSnips .
 cp ~/.zshrc .
+cp ~/.tmux.conf .

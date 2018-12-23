@@ -7,6 +7,7 @@ cp .vimrc ~
 cp -r .config ~/.vim
 cp -r UltiSnips ~/.vim
 cp .zshrc ~
+cp .tmux.conf ~
 
 if [[ ! -d /home/$USER/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
