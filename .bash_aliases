@@ -6,6 +6,8 @@ alias ci3s="bash ~/.config/i3/i3.sh"
 alias vimrc="vim ~/.vimrc"
 alias pip="pip3"
 alias gis="git status"
+alias py='python3'
+alias screenrc='vim ~/.screenrc'
 
 
 alias cp='cp -iv'                           # Preferred 'cp' implementation

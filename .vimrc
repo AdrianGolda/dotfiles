@@ -112,6 +112,13 @@ source ~/.vim/.config/folds.vim
 source ~/.vim/.config/minimap.vim
 source ~/.vim/.config/plugins.vim
 
+function RemoveTrailingWhitespaces()
+    :%s/\s\+$//e
+endfunction
+
+command! RemoveTrailing :call RemoveTrailingWhitespaces()
+
+
 let g:UltiSnipsSnippetDir=["~/.vim/UltiSnips"]
 
 let g:completor_complete_options = 'menuone,noselect'
