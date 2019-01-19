@@ -12,8 +12,7 @@ $0
 endsnippet
 
 snippet p "Print" b
-print($1)
-$0
+print($1)$0
 endsnippet
 
 snippet ifmain "ifmain" b
@@ -30,6 +29,11 @@ endsnippet
 snippet for "for loop" b
 for ${1:item} in ${2:iterable}:
 	${3:${VISUAL:pass}}
+endsnippet
+
+snippet wh "while loop" b
+while ${1:True}:
+	${0:pass}
 endsnippet
 
 ##########
@@ -260,6 +264,10 @@ endglobal
 ########################################
 # Class & Special Method Name Snippets #
 ########################################
+snippet init
+def __init__(self, $1):
+	$0
+endsnippet
 
 snippet class "class with docstrings" b
 class ${1:MyClass}(${2:object}):

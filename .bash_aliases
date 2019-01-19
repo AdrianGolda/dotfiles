@@ -44,6 +44,12 @@ alias gis='git status'
 
 #alias hibernate='systemctl hibernate'
 #alias suspend='systemctl suspend'
+decode() {
+    echo $1 | base64 --decode
+}
+encode(){
+    echo $1 | base64
+}
 
 alias governors='cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors'
 alias governor='cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor'

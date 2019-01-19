@@ -58,6 +58,7 @@ set incsearch
 set hlsearch
 
 set autoindent
+set smartindent
 set noexpandtab
 set sw=4
 
@@ -115,4 +116,5 @@ source ~/.vim/.config/plugins.vim
 let g:UltiSnipsSnippetDir=["~/.vim/UltiSnips"]
 
 let g:completor_complete_options = 'menuone,noselect'
+let g:completor_completion_delay = 5
 

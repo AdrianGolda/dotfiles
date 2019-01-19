@@ -43,6 +43,8 @@ map <C-F5> :source ~/.vimrc<CR>
 
 vnoremap gO "py<Esc>:e <C-R>p<CR>
 vnoremap gT "py<Esc>:tabe <C-R>p<CR>
+vnoremap <C-a> <C-a>gv
+vnoremap <C-x> <C-x>gv
 
 nmap \\ :CtrlP<CR>
 

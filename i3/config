@@ -178,6 +178,7 @@ bindsym $mod+F6 exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spot
 bindsym Print exec shutter -s
 bindsym Shift+Print exec shutter
 
-exec --no-startup-id i3-msg workspace $workspace1;
 workspace_layout tabbed
+exec --no-startup-id i3-msg workspace $workspace1;
+exec --no-startup-id i3-battery-popup
 set $mod Mod4
