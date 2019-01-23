@@ -7,19 +7,28 @@ call plug#begin()
     Plug 'sirver/UltiSnips'
     Plug 'honza/vim-snippets'
     Plug 'scrooloose/nerdcommenter'
-    Plug 'craigemery/vim-autotag'
-    Plug 'severin-lemaignan/vim-minimap'
-    Plug 'tpope/vim-abolish'
     Plug 'scrooloose/nerdtree'
     Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'airblade/vim-gitgutter'
-    Plug 'tpope/vim-surround'
+
+    Plug 'severin-lemaignan/vim-minimap'
     Plug 'terryma/vim-expand-region'
-    Plug 'jiangmiao/auto-pairs'
+    Plug 'tpope/vim-abolish'
+
+    Plug 'craigemery/vim-autotag'
+    "Plug 'tpope/vim-surround'
+    "Plug 'jiangmiao/auto-pairs'
+    "Plug 'ervandew/supertab'
+
+" Completor
     Plug 'maralla/completor.vim'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
-    Plug 'ervandew/supertab'
+
+" Search
+    Plug 'kien/ctrlp.vim'
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
 
 " Python
     Plug 'tell-k/vim-autopep8'
@@ -38,9 +47,6 @@ call plug#begin()
 
 " Django
     Plug 'tweekmonster/django-plus.vim'
-
-" Javascript
-    Plug 'maksimr/vim-jsbeautify', {'for': ['js'] }
 
 " Misc
     Plug 'vim-airline/vim-airline'
@@ -82,36 +88,18 @@ match ErrorMsg '\s\+$'
 set path+=**
 set wildmenu
 command! MakeTags !ctags -R .
-let g:deoplete#enable_at_startup = 1
 
 let g:indentLine_char='|'
 
 imap <C-q> <Esc>
 
-" For local replace
-nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
-" For global replace
-nnoremap gR gD:%s/<C-R>///gc<left><left><left>
-
-" switch between .cpp and .h
-nnoremap <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
-
 "theme source
 colorscheme gruvbox
 set background=dark
 
-source ~/.vim/.config/autocomplete.vim
-source ~/.vim/.config/autopep.vim
-source ~/.vim/.config/clang.vim
-source ~/.vim/.config/conquegdb.vim
-source ~/.vim/.config/indent.vim
-source ~/.vim/.config/nerdcommenter.vim
-source ~/.vim/.config/nerdtree.vim
-source ~/.vim/.config/remappings.vim
-source ~/.vim/.config/hexmode.vim
-source ~/.vim/.config/folds.vim
-source ~/.vim/.config/minimap.vim
-source ~/.vim/.config/plugins.vim
+for f in split(glob('~/.vim/.config/*.vim'), '\n')
+    exe 'source' f
+endfor
 
 function RemoveTrailingWhitespaces()
     :%s/\s\+$//e
@@ -119,9 +107,44 @@ endfunction
 
 command! RemoveTrailing :call RemoveTrailingWhitespaces()
 
+fu! MyTabLabel(n)
+let buflist = tabpagebuflist(a:n)
+let winnr = tabpagewinnr(a:n)
+let string = fnamemodify(bufname(buflist[winnr - 1]), ':t')
+return empty(string) ? '[unnamed]' : string
+endfu
+
+fu! MyTabLine()
+let s = ''
+for i in range(tabpagenr('$'))
+" select the highlighting
+    if i + 1 == tabpagenr()
+    let s .= '%#TabLineSel#'
+    else
+    let s .= '%#TabLine#'
+    endif
+
+    " set the tab page number (for mouse clicks)
+    "let s .= '%' . (i + 1) . 'T'
+    " display tabnumber (for use with <count>gt, etc)
+    let s .= ' '. (i+1) . ' '
+
+    " the label is made by MyTabLabel()
+    let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
+
+    if i+1 < tabpagenr('$')
+        let s .= ' |'
+    endif
+endfor
+return s
+endfu
+set tabline=%!MyTabLine()
+
 
 let g:UltiSnipsSnippetDir=["~/.vim/UltiSnips"]
 
 let g:completor_complete_options = 'menuone,noselect'
 let g:completor_completion_delay = 5
 
+" Jump to middle of the line
+nnoremap gm :call cursor(0, len(getline('.'))/2)<cr>
