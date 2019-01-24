@@ -1,5 +1,4 @@
 #!/bin/bash
-cp -r -i i3 ~/.config
 cp -r i3blocks ~/.config
 cp .bashrc ~
 cp .bash_aliases ~
