@@ -1,5 +1,4 @@
 #!/bin/bash
-cp -r i3blocks ~/.config
 cp .bashrc ~
 cp .bash_aliases ~
 cp .vimrc ~
