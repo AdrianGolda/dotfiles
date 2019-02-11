@@ -14,8 +14,10 @@ call plug#begin()
     Plug 'severin-lemaignan/vim-minimap'
     Plug 'terryma/vim-expand-region'
     Plug 'tpope/vim-abolish'
+    Plug 'tpope/vim-fugitive'
 
     Plug 'craigemery/vim-autotag'
+    Plug 'machakann/vim-swap'
     "Plug 'tpope/vim-surround'
     "Plug 'jiangmiao/auto-pairs'
     "Plug 'ervandew/supertab'
@@ -101,7 +103,7 @@ for f in split(glob('~/.vim/.config/*.vim'), '\n')
     exe 'source' f
 endfor
 
-function RemoveTrailingWhitespaces()
+function! RemoveTrailingWhitespaces()
     :%s/\s\+$//e
 endfunction
 
