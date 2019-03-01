@@ -8,6 +8,7 @@ alias pip="pip3"
 alias gis="git status"
 alias py='python3'
 alias screenrc='vim ~/.screenrc'
+alias clip='xclip -selection clipboard'
 
 
 alias cp='cp -iv'                           # Preferred 'cp' implementation
