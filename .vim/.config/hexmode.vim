@@ -1,7 +1,3 @@
-nnoremap <C-H> :Hexmode<CR>
-inoremap <C-H> <Esc>:Hexmode<CR>
-vnoremap <C-H> :<C-U>Hexmode<CR>
-
 " ex command for toggling hex mode - define mapping if desired
 if !exists(":Hexmode")
 	command -bar Hexmode call ToggleHex()
