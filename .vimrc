@@ -18,7 +18,7 @@ call plug#begin()
 
     Plug 'craigemery/vim-autotag'
     Plug 'machakann/vim-swap'
-    "Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-surround'
     "Plug 'jiangmiao/auto-pairs'
     "Plug 'ervandew/supertab'
 
@@ -150,3 +150,5 @@ let g:completor_completion_delay = 5
 
 " Jump to middle of the line
 nnoremap gm :call cursor(0, len(getline('.'))/2)<cr>
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+
