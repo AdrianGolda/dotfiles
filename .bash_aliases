@@ -9,6 +9,7 @@ alias gis="git status"
 alias py='python3'
 alias screenrc='vim ~/.screenrc'
 alias clip='xclip -selection clipboard'
+alias awe='vim ~/.config/awesome/rc.lua'
 
 
 alias cp='cp -iv'                           # Preferred 'cp' implementation
@@ -21,11 +22,11 @@ alias lsd='ls -d */'
 
 alias cls="printf '\033c'"
 
-function cd_up() {
-    cd $(printf "%0.0s../" $(seq 1 $1));
-}
-alias ..="cd_up"
-alias 'cd..'='cd_up'
+#function cd_up() {
+    #cd $(printf "%0.0s../" $(seq 1 $1));
+#}
+alias ..="cd .."
+alias 'cd..'='cd ..'
 function cd() {
     new_directory="$*";
     if [ $# -eq 0 ]; then
@@ -34,25 +35,16 @@ function cd() {
     builtin cd "${new_directory}" && ls --color=always
 }
 
-if [ "$LANG" != "en_US.UTF-8" ] && [ "$LANG" != "en_GB.utf8" ]; then
-    alias cdd='cd ~/Pobrane'
-    alias cdp='cd ~/Pulpit'
-else
+if [[ "$LANG" == "en_US.UTF-8" ]] || [[ "$LANG" == "en_GB.utf8" ]]; then
     alias cdd='cd ~/Downloads'
     alias cdp='cd ~/Desktop'
+else
+    alias cdd='cd ~/Pobrane'
+    alias cdp='cd ~/Pulpit'
 fi
 
 alias cdv='cd ~/.vim'
 alias gis='git status'
-
-#alias hibernate='systemctl hibernate'
-#alias suspend='systemctl suspend'
-decode() {
-    echo $1 | base64 --decode
-}
-encode(){
-    echo $1 | base64
-}
 
 alias governors='cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors'
 alias governor='cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor'
@@ -64,14 +56,6 @@ change_background() {
     else
         echo "File doesn't exist"
     fi
-}
-
-untar(){
-    FILE=$1
-    if [ -z ${FILE} ]; then
-        exit;
-    fi
-    tar -xvzf $FILE
 }
 
 mkcdir()
@@ -94,21 +78,6 @@ kp(){
 
 }
 
-fall(){
-    WHERE="."
-    WHAT="file"
-    if [[ -n $1 ]]; then
-        WHAT=$1
-    fi
-    if [[ -n $2 ]]; then
-        WHERE=$2
-    fi
-    echo $WHAT
-
-    echo $WHERE
-
-    grep -rnw $WHERE -e $WHAT
-}
 if [[ -f ~/.local_aliases ]]; then
     source ~/.local_aliases
 fi
@@ -139,5 +108,4 @@ extract () {
         echo "'$1' is not a valid file"
     fi
 }
-
 
