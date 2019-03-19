@@ -70,10 +70,16 @@ nnoremap th  :tabfirst<CR>
 nnoremap tk  :tabnext<CR>
 nnoremap tj  :tabprev<CR>
 nnoremap tl  :tablast<CR>
-nnoremap tt  :tabedit<Space>
+nnoremap tc  :tabedit<Space>
 nnoremap tn  :tabnext<Space>
 nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
 
-nmap <S-Enter> Ojjj
-nmap <CR> ojjk
+
+inoremap <expr> <c-k> pumvisible() ? "\<C-p>" : "\<Tab>"
+inoremap <expr> <c-j> pumvisible() ? "\<C-n>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+
+" Jump to middle of the line
+nnoremap gm :call cursor(0, len(getline('.'))/2)<cr>
+

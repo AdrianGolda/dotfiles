@@ -2,17 +2,29 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsListSnippets="<c-l>"
-"
-let g:jedi#popup_select_first=0
-
-" C++: Completor
-inoremap <expr> <c-k> pumvisible() ? "\<C-p>" : "\<Tab>"
-inoremap <expr> <c-j> pumvisible() ? "\<C-n>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
-let g:SuperTabDefaultCompletionType = "<c-n>"
-
 let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/UltiSnips']
-let g:completor_min_chars = 1
+
 let g:completor_python_binary = '/usr/bin/python3'
 let g:completor_clang_binary = '/usr/bin/clang'
+let g:completor_min_chars = 1
+let g:completor_completion_delay = 5
+let g:completor_complete_options = 'menuone,noselect'
 
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+
+let g:jedi#completions_command = ""
+let g:jedi#goto_command = "F12"
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#documentation_command = ""
+let g:jedi#rename_command = "<leader>r"
+let g:jedi#usages_command = "<leader>n"
+
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#popup_on_dot = 1
+let g:jedi#popup_select_first = 0
+let g:jedi#auto_close_doc = 1
+let g:jedi#show_call_signatures = 1
+let g:jedi#show_call_signatures_delay = 500
+let g:jedi#use_tabs_not_buffers = 0
+let g:jedi#smart_auto_mappings = 0
+let g:jedi#use_tag_stack = 1

@@ -20,12 +20,13 @@ call plug#begin()
     Plug 'machakann/vim-swap'
     Plug 'tpope/vim-surround'
     "Plug 'jiangmiao/auto-pairs'
-    "Plug 'ervandew/supertab'
 
 " Completor
-    Plug 'maralla/completor.vim'
+    "Plug 'maralla/completor.vim'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
+    Plug 'davidhalter/jedi-vim'
+
 
 " Search
     Plug 'kien/ctrlp.vim'
@@ -142,13 +143,6 @@ return s
 endfu
 set tabline=%!MyTabLine()
 
-
-let g:UltiSnipsSnippetDir=["~/.vim/UltiSnips"]
-
-let g:completor_complete_options = 'menuone,noselect'
-let g:completor_completion_delay = 5
-
-" Jump to middle of the line
-nnoremap gm :call cursor(0, len(getline('.'))/2)<cr>
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
+set completeopt=menuone
