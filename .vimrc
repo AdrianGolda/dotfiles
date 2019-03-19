@@ -19,7 +19,7 @@ call plug#begin()
     Plug 'craigemery/vim-autotag'
     Plug 'machakann/vim-swap'
     Plug 'tpope/vim-surround'
-    "Plug 'jiangmiao/auto-pairs'
+    Plug 'jiangmiao/auto-pairs'
 
 " Completor
     "Plug 'maralla/completor.vim'
