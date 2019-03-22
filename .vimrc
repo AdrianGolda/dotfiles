@@ -16,7 +16,7 @@ call plug#begin()
     Plug 'tpope/vim-abolish'
     Plug 'tpope/vim-fugitive'
 
-    Plug 'craigemery/vim-autotag'
+    "Plug 'craigemery/vim-autotag'
     Plug 'machakann/vim-swap'
     Plug 'tpope/vim-surround'
     Plug 'jiangmiao/auto-pairs'
@@ -65,11 +65,6 @@ set number
 set relativenumber
 set incsearch
 set hlsearch
-
-set autoindent
-set smartindent
-set noexpandtab
-set sw=4
 
 hi CursorLine cterm=underline
 

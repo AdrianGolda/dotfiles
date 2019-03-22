@@ -75,10 +75,12 @@ nnoremap tn  :tabnext<Space>
 nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
 
-
-inoremap <expr> <c-k> pumvisible() ? "\<C-p>" : "\<Tab>"
-inoremap <expr> <c-j> pumvisible() ? "\<C-n>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+" Kept as a reference
+"inoremap <expr> <c-k> pumvisible() ? "\<C-p>" : "\<Tab>"
+"inoremap <expr> <c-j> pumvisible() ? "\<C-n>" : "\<S-Tab>"
+"inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+inoremap <C-j> <C-n>
+inoremap <C-k> <C-p>
 
 " Jump to middle of the line
 nnoremap gm :call cursor(0, len(getline('.'))/2)<cr>
