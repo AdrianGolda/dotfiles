@@ -10,6 +10,7 @@ alias py='python3'
 alias screenrc='vim ~/.screenrc'
 alias clip='xclip -selection clipboard'
 alias awe='vim ~/.config/awesome/rc.lua'
+alias gimme='sudo apt install '
 
 
 alias cp='cp -iv'                           # Preferred 'cp' implementation
