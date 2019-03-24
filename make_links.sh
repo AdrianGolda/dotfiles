@@ -1,9 +1,11 @@
-#!/bin/bash
+#!/bin/sh
 
-ln -s $PWD/.bash_aliases $HOME
-ln -s $PWD/.zshrc $HOME
-ln -s $PWD/.tmux.conf $HOME
+ln -sf $PWD/vim/.vimrc ~
+ln -sf $PWD/vim/.config ~/.vim
+ln -sf $PWD/vim/UltiSnips ~/.vim
 
-ln -s $PWD/.vimrc $HOME
-ln -s $PWD/.vim/.config $HOME/.vim
-ln -s $PWD/.vim/UltiSnips $HOME/.vim
+ln -sf $PWD/tmux/.tmux.conf ~
+
+ln -sf $PWD/zsh/.zshrc ~
+ln -sf $PWD/bash/.bash_aliases ~
+
