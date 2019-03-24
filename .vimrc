@@ -22,7 +22,7 @@ call plug#begin()
     Plug 'jiangmiao/auto-pairs'
 
 " Completor
-    "Plug 'maralla/completor.vim'
+    Plug 'maralla/completor.vim'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
     Plug 'davidhalter/jedi-vim'
