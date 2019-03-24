@@ -9,3 +9,5 @@ ln -sf $PWD/tmux/.tmux.conf ~
 ln -sf $PWD/zsh/.zshrc ~
 ln -sf $PWD/bash/.bash_aliases ~
 
+ln -sf $PWD/i3 ~/.local/share
+
