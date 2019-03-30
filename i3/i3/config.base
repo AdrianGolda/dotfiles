@@ -24,7 +24,8 @@ exec bash ~/.config/i3/touchpad.sh
 bindsym $mod+Return workspace $workspace2; exec i3-sensible-terminal
 
 # kill focused window
-bindsym $mod+q kill
+#bindsym $mod+q kill
+bindsym $mod+q exec --no-startup-id ~/.config/i3/SteamOrKill.sh
 
 # start dmenu (a program launcher)
 bindsym $mod+r exec dmenu_run
