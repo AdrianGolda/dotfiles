@@ -25,18 +25,11 @@ alias lsd='ls -d */'
 
 alias cls="printf '\033c'"
 
-#function cd_up() {
-    #cd $(printf "%0.0s../" $(seq 1 $1));
-#}
 alias ..="cd .."
-alias 'cd..'='cd ..'
-function cd() {
-    new_directory="$*";
-    if [ $# -eq 0 ]; then
-        new_directory=${HOME};
-    fi;
-    builtin cd "${new_directory}" && ls --color=always
-}
+alias ..2="cd ../.."
+alias ..3="cd ../../.."
+alias ..4="cd ../../../.."
+alias ..5="cd ../../../../.."
 
 if [[ "$LANG" == "en_US.UTF-8" ]] || [[ "$LANG" == "en_GB.utf8" ]]; then
     alias cdd='cd ~/Downloads'
