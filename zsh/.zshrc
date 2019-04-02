@@ -3,7 +3,7 @@ export ZSH="/home/$USER/.oh-my-zsh"
 
 ZSH_THEME="agnoster"
 source ~/.bash_aliases
-
+# precmd() { print "" }
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
@@ -77,8 +77,8 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="vim ~/.zshrc"
+alias zshconfig="vim ~/.zshrc && source ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
-eval $(thefuck --alias)
-eval $(thefuck --alias FUCK)
 export TERM=xterm-256color
+PROMPT="$PROMPT
+$ "

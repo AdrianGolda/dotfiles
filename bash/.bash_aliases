@@ -25,6 +25,7 @@ alias lsd='ls -d */'
 
 alias cls="printf '\033c'"
 
+
 alias ..="cd .."
 alias ..2="cd ../.."
 alias ..3="cd ../../.."
