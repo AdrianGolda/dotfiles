@@ -1,5 +1,5 @@
 alias aliases="vim ~/.bash_aliases && source ~/.bash_aliases"
-alias locals="vim ~/.local_aliases"
+alias locals="vim ~/.local_aliases && source ~/.local_aliases"
 alias ci3="vim ~/.config/i3/config.base && bash ~/.config/i3/i3.sh"
 alias ci3l="vim ~/.config/i3/config.local && bash ~/.config/i3/i3.sh"
 alias ci3s="bash ~/.config/i3/i3.sh"
