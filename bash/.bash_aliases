@@ -6,6 +6,9 @@ alias ci3s="bash ~/.config/i3/i3.sh"
 alias vimrc="vim ~/.vimrc"
 alias pip="pip3"
 alias gis="git status"
+gib() {
+    for branch in `git branch -r | grep -v HEAD`;do echo -e `git show --format="%ci %cr" $branch | head -n 1` \\t$branch; done | sort -r
+}
 alias py='python3'
 alias screenrc='vim ~/.screenrc'
 alias clip='xclip -selection clipboard'
