@@ -41,7 +41,6 @@ else
 fi
 
 alias cdv='cd ~/.vim'
-alias gis='git status'
 
 alias governors='cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors'
 alias governor='cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor'
