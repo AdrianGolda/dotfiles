@@ -85,3 +85,14 @@ inoremap <C-k> <C-p>
 " Jump to middle of the line
 nnoremap gm :call cursor(0, len(getline('.'))/2)<cr>
 
+function! TagInNewTab()
+    let word = expand("<cword>")
+    redir => tagsfiles
+    silent execute 'set tags'
+    redir END
+    tabe
+    execute 'setlocal' . strpart(tagsfiles, 2)
+    execute 'tag ' . word
+endfunction
+
+nnoremap gnt :call TagInNewTab()<CR>
