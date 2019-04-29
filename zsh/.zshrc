@@ -82,3 +82,5 @@ alias ohmyzsh="vim ~/.oh-my-zsh"
 export TERM=xterm-256color
 PROMPT="$PROMPT
 $ "
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
