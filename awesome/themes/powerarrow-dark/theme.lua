@@ -15,28 +15,16 @@ local os = os
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 local theme                                     = {}
-local srep = string.rep
-
-function pad(s, width, padder)
-  padder = strrep(padder or " ", abs(width))
-  if width < 0 then return strsub(padder .. s, width) end
-  return strsub(s .. padder, 1, width)
-end
-
--- all of these functions return their result and a boolean
--- to notify the caller if the string was even changed
-
--- pad the left side
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-dark"
 theme.wallpaper                                 = theme.dir .. "/wall.png"
 theme.font                                      = "xos4 Terminus 9"
 theme.fg_normal                                 = "#DDDDFF"
-theme.fg_focus                                  = "#DDDDFF"
+theme.fg_focus                                  = "#EA6F81"
 theme.fg_urgent                                 = "#CC9393"
 theme.bg_normal                                 = "#1A1A1A"
 theme.bg_focus                                  = "#313131"
 theme.bg_urgent                                 = "#1A1A1A"
-theme.border_width                              = dpi(0)
+theme.border_width                              = dpi(1)
 theme.border_normal                             = "#3F3F3F"
 theme.border_focus                              = "#7F7F7F"
 theme.border_marked                             = "#CC9393"
@@ -106,23 +94,21 @@ local separators = lain.util.separators
 -- Textclock
 local clockicon = wibox.widget.imagebox(theme.widget_clock)
 local clock = awful.widget.watch(
-    "date +'%R   %d-%m-%Y'", 60,
+    "date +'%a %d %b %R'", 60,
     function(widget, stdout)
         widget:set_markup(" " .. markup.font(theme.font, stdout))
     end
 )
-local calendar = require("calendar")
-calendar({}):attach(clock)
 
 -- Calendar
---theme.cal = lain.widget.cal({
-    --attach_to = { clock },
-    --notification_preset = {
-        --font = "xos4 Terminus 10",
-        --fg   = theme.fg_normal,
-        --bg   = theme.bg_normal
-    --}
---})
+theme.cal = lain.widget.cal({
+    attach_to = { clock },
+    notification_preset = {
+        font = "xos4 Terminus 10",
+        fg   = theme.fg_normal,
+        bg   = theme.bg_normal
+    }
+})
 
 -- Mail IMAP check
 local mailicon = wibox.widget.imagebox(theme.widget_mail)
@@ -193,7 +179,7 @@ local mem = lain.widget.mem({
 local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
 local cpu = lain.widget.cpu({
     settings = function()
-        widget:set_markup(markup.font(theme.font, " " .. string.format("%3d", cpu_now.usage) .. "% "))
+        widget:set_markup(markup.font(theme.font, " " .. cpu_now.usage .. "% "))
     end
 })
 
@@ -241,8 +227,6 @@ local bat = lain.widget.bat({
 -- ALSA volume
 local volicon = wibox.widget.imagebox(theme.widget_vol)
 theme.volume = lain.widget.alsa({
-    timeout = 5,
-    cmd = 'amixer -D pulse',
     settings = function()
         if volume_now.status == "off" then
             volicon:set_image(theme.widget_vol_mute)
@@ -303,17 +287,7 @@ function theme.at_screen_connect(s)
     s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
 
     -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist{
-        screen = s,
-        filter = awful.widget.tasklist.filter.currenttags,
-        buttons = awful.util.tasklist_buttons,
-        style = {
-            shape_border_width = 1,
-            shape_border_color = theme.bg_normal,
-            shape_border_color_focus = theme.border_focus,
-            shape = gears.shape.rectangle,
-        },
-    }
+    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(18), bg = theme.bg_normal, fg = theme.fg_normal })
@@ -333,41 +307,33 @@ function theme.at_screen_connect(s)
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
             spr,
-            --wibox.container.background(mpdicon, theme.bg_focus),
-            --wibox.container.background(theme.mpd.widget, theme.bg_focus),
             arrl_ld,
+            wibox.container.background(mpdicon, theme.bg_focus),
+            wibox.container.background(theme.mpd.widget, theme.bg_focus),
             arrl_dl,
             volicon,
             theme.volume.widget,
             arrl_ld,
-            --wibox.container.background(mailicon, theme.bg_focus),
+            wibox.container.background(mailicon, theme.bg_focus),
             --wibox.container.background(theme.mail.widget, theme.bg_focus),
             arrl_dl,
             memicon,
             mem.widget,
             arrl_ld,
-            arrl_dl,
-            --wibox.container.background(cpuicon, theme.bg_focus),
-            --wibox.container.background(cpu.widget, theme.bg_focus),
-            cpuicon,
-            cpu.widget,
-            arrl_ld,
+            wibox.container.background(cpuicon, theme.bg_focus),
+            wibox.container.background(cpu.widget, theme.bg_focus),
             arrl_dl,
             tempicon,
             temp.widget,
             arrl_ld,
-            --wibox.container.background(fsicon, theme.bg_focus),
+            wibox.container.background(fsicon, theme.bg_focus),
             --wibox.container.background(theme.fs.widget, theme.bg_focus),
             arrl_dl,
             baticon,
             bat.widget,
-            --arrl_ld,
-            --arrl_dl,
-            --wibox.container.background(neticon, theme.bg_focus),
-            --wibox.container.background(net.widget, theme.bg_focus),
-            --neticon,
-            --net.widget,
             arrl_ld,
+            wibox.container.background(neticon, theme.bg_focus),
+            wibox.container.background(net.widget, theme.bg_focus),
             arrl_dl,
             clock,
             spr,
