@@ -48,6 +48,10 @@ call plug#begin()
     Plug 'chrisbra/Colorizer'
     Plug 'gregsexton/MatchTag'
 
+" JS
+    Plug 'pangloss/vim-javascript'
+    Plug 'mxw/vim-jsx'
+
 " Django
     Plug 'tweekmonster/django-plus.vim'
 

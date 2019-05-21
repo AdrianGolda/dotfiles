@@ -38,8 +38,8 @@ command! SetCwd :cd %:p:h
 
 nnoremap <F6> :SetCwd<CR>
 
-map <F5> :set rnu!<CR>
-map <C-F5> :source ~/.vimrc<CR>
+map <C-F5> :set rnu!<CR>
+map <F5> :source ~/.vimrc<CR>
 
 vnoremap gO "py<Esc>:e <C-R>p<CR>
 vnoremap gT "py<Esc>:tabe <C-R>p<CR>
@@ -96,3 +96,21 @@ function! TagInNewTab()
 endfunction
 
 nnoremap gnt :call TagInNewTab()<CR>
+
+nnoremap <leader>J J
+vnoremap <leader>J J
+inoremap <leader>J <ESC><UP>JJi<BS><ESC><Right>
+function! SkipClosingParentheses()
+  let line = getline('.')
+  let current_char = line[col('.')-1]
+
+  "Ignore EOL
+  if col('.') == col('$')
+    return "\t"
+  end
+
+  return stridx(']})"', current_char)==-1 ? "\t" : "\<Right>"
+endfunction
+inoremap <expr> <leader><tab> SkipClosingParentheses()
+inoremap <leader>O <ESC>O
+inoremap <leader>o <ESC>o
