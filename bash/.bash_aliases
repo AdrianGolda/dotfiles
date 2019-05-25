@@ -15,7 +15,10 @@ alias clip='xclip -selection clipboard'
 alias awe='vim ~/.config/awesome/rc.lua'
 alias gimme='sudo apt install '
 alias qwe='source .env/bin/activate'
-alias .qwe='source ..env/bin/activate'
+alias .qwe='source ../.env/bin/activate'
+upr() {
+    uprecords -s | grep "\->" | awk '{print $2}' | xargs uprecords -m | head -n-7 | tail -n+3 | sed '$ s/->/  /; s/.\[[01]m//g; s/ ,/, /g' | LC_TIME=C sort -k 12n -k 9M -k 10n
+}
 
 
 alias cp='cp -iv'                           # Preferred 'cp' implementation
