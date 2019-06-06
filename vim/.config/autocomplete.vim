@@ -8,9 +8,11 @@ let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/UltiSnips']
 " COMPLETOR
 let g:completor_python_binary = '/usr/bin/python3'
 let g:completor_clang_binary = '/usr/bin/clang'
+let g:completor_node_binary = '/usr/bin/node'
 let g:completor_min_chars = 1
 let g:completor_completion_delay = 5
 let g:completor_complete_options = 'menuone,noselect'
+
 
 " CTRLP
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
@@ -33,3 +35,6 @@ let g:jedi#use_tabs_not_buffers = 0
 let g:jedi#completions_enabled = 1
 let g:jedi#smart_auto_mappings = 0
 let g:jedi#use_tag_stack = 1
+
+" Closetag
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx,*.js"

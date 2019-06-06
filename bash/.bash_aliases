@@ -4,6 +4,7 @@ alias ci3="vim ~/.config/i3/config.base && bash ~/.config/i3/i3.sh"
 alias ci3l="vim ~/.config/i3/config.local && bash ~/.config/i3/i3.sh"
 alias ci3s="bash ~/.config/i3/i3.sh"
 alias vimrc="vim ~/.vimrc"
+alias vimc="vim ~/.vim/.config"
 alias pip="pip3"
 alias gis="git status"
 gib() {
