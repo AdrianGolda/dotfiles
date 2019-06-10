@@ -53,6 +53,7 @@ call plug#begin()
     "Plug 'pangloss/vim-javascript'
     Plug 'maxmellon/vim-jsx-pretty'
     Plug 'ternjs/tern_for_vim'
+    Plug 'vim-scripts/matchit.zip'
 
 " Django
     Plug 'tweekmonster/django-plus.vim'
@@ -89,7 +90,7 @@ set mouse=a
 match ErrorMsg '\%>120v.\+'
 match ErrorMsg '\s\+$'
 
-set path+=**
+"set path+=**
 set wildmenu
 command! MakeTags !ctags -R . --exclude=node_modules --exclude=tags
 
