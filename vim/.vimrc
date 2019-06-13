@@ -15,8 +15,8 @@ call plug#begin()
     Plug 'terryma/vim-expand-region'
     Plug 'tpope/vim-abolish'
     Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-obsession'
 
-    "Plug 'craigemery/vim-autotag'
     Plug 'machakann/vim-swap'
     Plug 'tpope/vim-surround'
     Plug 'jiangmiao/auto-pairs'
@@ -47,10 +47,13 @@ call plug#begin()
 " HTML
     Plug 'chrisbra/Colorizer'
     Plug 'gregsexton/MatchTag'
+    Plug 'alvan/vim-closetag'
 
 " JS
-    Plug 'pangloss/vim-javascript'
-    Plug 'mxw/vim-jsx'
+    "Plug 'pangloss/vim-javascript'
+    Plug 'maxmellon/vim-jsx-pretty'
+    Plug 'ternjs/tern_for_vim'
+    Plug 'vim-scripts/matchit.zip'
 
 " Django
     Plug 'tweekmonster/django-plus.vim'
@@ -87,9 +90,9 @@ set mouse=a
 match ErrorMsg '\%>120v.\+'
 match ErrorMsg '\s\+$'
 
-set path+=**
+"set path+=**
 set wildmenu
-command! MakeTags !ctags -R .
+command! MakeTags !ctags -R . --exclude=node_modules --exclude=tags
 
 let g:indentLine_char='|'
 
@@ -145,3 +148,4 @@ set tabline=%!MyTabLine()
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 set completeopt=menuone
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)

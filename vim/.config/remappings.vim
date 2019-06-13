@@ -114,3 +114,6 @@ endfunction
 inoremap <expr> <leader><tab> SkipClosingParentheses()
 inoremap <leader>O <ESC>O
 inoremap <leader>o <ESC>o
+nnoremap <c-s-f> :Ag<cr>
+nmap <leader>gf :CtrlP<CR><C-\>w
+xnoremap p "_dP
