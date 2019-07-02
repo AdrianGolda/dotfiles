@@ -62,6 +62,8 @@ call plug#begin()
     Plug 'vim-airline/vim-airline'
     Plug 'morhetz/gruvbox'
     Plug 'Yggdroot/indentLine'
+    Plug 'yegappan/mru'
+    Plug 'nelstrom/vim-visual-star-search'
 
 call plug#end()            " required
 
@@ -92,7 +94,7 @@ match ErrorMsg '\s\+$'
 
 "set path+=**
 set wildmenu
-command! MakeTags !ctags -R . --exclude=node_modules --exclude=tags
+command! MakeTags !ctags -R --exclude=node_modules --exclude=tags .
 
 let g:indentLine_char='|'
 
@@ -149,3 +151,5 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 set completeopt=menuone
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+set smartcase
+set ignorecase

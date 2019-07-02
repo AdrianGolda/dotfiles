@@ -117,3 +117,5 @@ inoremap <leader>o <ESC>o
 nnoremap <c-s-f> :Ag<cr>
 nmap <leader>gf :CtrlP<CR><C-\>w
 xnoremap p "_dP
+
+vnoremap <C-r> :s/

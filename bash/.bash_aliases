@@ -112,3 +112,15 @@ extract () {
     fi
 }
 
+vlcrecord() {
+    vlc \
+        --no-video-deco \
+        --no-embedded-video \
+        --screen-fps=20 \
+        --screen-top=0 \
+        --screen-left=1376 \
+        --screen-width=1920 \
+        --screen-height=1000 \
+        screen://
+
+}
