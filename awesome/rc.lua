@@ -773,6 +773,7 @@ do
   local cmds =
   {
     "nm-applet",
+    "megasync",
   }
 
   for _,i in pairs(cmds) do
