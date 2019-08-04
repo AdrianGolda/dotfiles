@@ -50,7 +50,7 @@ call plug#begin()
     Plug 'alvan/vim-closetag'
 
 " JS
-    "Plug 'pangloss/vim-javascript'
+    Plug 'pangloss/vim-javascript'
     Plug 'maxmellon/vim-jsx-pretty'
     Plug 'ternjs/tern_for_vim'
     Plug 'vim-scripts/matchit.zip'

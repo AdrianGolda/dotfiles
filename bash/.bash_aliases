@@ -124,3 +124,8 @@ vlcrecord() {
         screen://
 
 }
+
+p() {
+    curl -s https://www.lexico.com/en/definition/$1 | grep "phoneticspelling.*/</span>" -o |
+        sed 's#phoneticspelling">/##g' | sed 's#/</span>##g' | tr -d '\n'
+}

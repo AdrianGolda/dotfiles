@@ -119,3 +119,4 @@ nmap <leader>gf :CtrlP<CR><C-\>w
 xnoremap p "_dP
 
 vnoremap <C-r> :s/
+nnoremap == gg=G<C-o><C-o>
