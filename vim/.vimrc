@@ -147,9 +147,10 @@ return s
 endfu
 set tabline=%!MyTabLine()
 
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_custom_ignore = 'node_modules$\|DS_Store$\|\.git$'
 
 set completeopt=menuone
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 set smartcase
 set ignorecase
+set shell=/bin/bash
