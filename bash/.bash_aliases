@@ -31,7 +31,7 @@ alias less='less -FSRXc'                    # Preferred 'less' implementation
 alias lsd='ls -d */'
 
 alias cls="printf '\033c'"
-
+alias c="python3"
 
 alias ..="cd .."
 alias ..2="cd ../.."
@@ -130,3 +130,4 @@ p() {
         sed 's#phoneticspelling">/##g' | sed 's#/</span>##g' | tr -d '\n'
 }
 alias r='gnome-terminal -e ranger'
+alias c=python3
