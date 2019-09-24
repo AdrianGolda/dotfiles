@@ -93,3 +93,6 @@ fi
 if type rg &> /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files --hidden'
 fi
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+eval "$(direnv hook zsh)"
