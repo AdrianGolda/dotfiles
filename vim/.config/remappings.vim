@@ -5,6 +5,7 @@ nnoremap <Up> <Nop>
 nnoremap <Down> <Nop>
 "jj to esc
 inoremap jj <Esc>
+inoremap fd <Esc>
 
 " remapings
 imap <C-q> <Esc>
