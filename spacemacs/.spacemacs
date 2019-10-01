@@ -330,6 +330,7 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (add-hook 'python-mode-hook 'importmagic-mode)
 	(setq powerline-default-separator 'alternate)
+  (setq dotspacemacs-distinguish-gui-tab t)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
