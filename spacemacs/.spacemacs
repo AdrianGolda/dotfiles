@@ -35,11 +35,16 @@ values."
      vimscript
      python
      (python :variables
-               python-backend 'lsp
-               python-lsp-server 'pyls
-               python-sort-imports-on-save t
-               python-test-runner  'pytest
-               )
+             python-backend 'lsp
+             python-fill-column 79
+             python-lsp-server 'pyls
+             python-formatter 'yapf
+             python-format-on-save t
+             python-sort-imports-on-save t
+             python-pipenv-activate t
+             python-tab-width 4
+             python-test-runner  'pytest
+             )
 
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -54,6 +59,7 @@ values."
      markdown
      (markdown :variables markdown-live-preview-engine 'vmd)
      ranger
+     multiple-cursors
      org
      latex
      (shell :variables
