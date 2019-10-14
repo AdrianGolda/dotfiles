@@ -33,6 +33,8 @@ values."
    '(
      html
      vimscript
+     lsp
+     dap
      python
      (python :variables
              python-backend 'lsp
@@ -41,7 +43,6 @@ values."
              python-formatter 'yapf
              python-format-on-save t
              python-sort-imports-on-save t
-             python-pipenv-activate t
              python-tab-width 4
              python-test-runner  'pytest
              python-auto-set-local-pyenv-version 'on-visit
@@ -83,7 +84,7 @@ values."
             shell-default-position 'bottom)
      spell-checking
      syntax-checking
-     ;; version-control
+     version-control
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -355,6 +356,7 @@ you should place your code here."
 	(setq powerline-default-separator 'alternate)
   (setq dotspacemacs-distinguish-gui-tab t)
   (global-company-mode)
+  (setq python-shell-virtualenv-path ".venv/")
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
