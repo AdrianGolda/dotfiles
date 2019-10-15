@@ -350,6 +350,10 @@ you should place your code here."
   (add-hook 'python-mode-hook 'importmagic-mode)
 	(setq powerline-default-separator 'alternate)
   (setq dotspacemacs-distinguish-gui-tab t)
+  (setq spacemacs-default-jump-handlers
+        (remove 'evil-goto-definition spacemacs-default-jump-handlers))
+  (spacemacs/add-to-hooks 'turn-on-fci-mode '(text-mode-hook))
+  (spacemacs/add-to-hooks 'turn-off-fci-mode '(org-mode-hook))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
