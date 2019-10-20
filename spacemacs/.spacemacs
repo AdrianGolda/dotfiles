@@ -55,6 +55,7 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
+     imenu-list
      auto-completion
      (auto-completion :variables
                       auto-completion-return-key-behavior 'complete
