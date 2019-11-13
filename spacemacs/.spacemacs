@@ -32,6 +32,7 @@ values."
    dotspacemacs-configuration-layers
    '(
      html
+     javascript
      vimscript
      lsp
      dap
@@ -39,14 +40,17 @@ values."
      (python :variables
              python-backend 'lsp
              python-fill-column 79
-             python-lsp-server 'pyls
-             python-formatter 'yapf
+             python-lsp-server 'mspyls
+
              python-format-on-save t
+             python-formatter 'yapf
+
              python-sort-imports-on-save t
              python-tab-width 4
-             python-test-runner  'pytest
-             python-auto-set-local-pyenv-version 'on-visit
-             python-auto-set-local-pyvenv-virtualenv 'on-visit
+             python-test-runner 'pytest
+
+             ;; python-auto-set-local-pyenv-version 'on-visit
+             ;; python-auto-set-local-pyvenv-virtualenv 'on-visit
              )
 
      ;; ----------------------------------------------------------------
@@ -90,7 +94,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(systemd counsel ivy-hydra jedi importmagic)
+   dotspacemacs-additional-packages '(systemd counsel ivy-hydra jedi importmagic vue-mode)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -352,11 +356,16 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  (setq python-shell-interpreter "python3")
+  (setq importmagic-python-interpreter "python3")
+  (pyvenv-activate "~/.virtualenvs/emacs")
+
   (add-hook 'python-mode-hook 'importmagic-mode)
 	(setq powerline-default-separator 'alternate)
   (setq dotspacemacs-distinguish-gui-tab t)
   (global-company-mode)
   (setq python-shell-virtualenv-path ".venv/")
+
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -388,7 +397,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (lsp-ui lsp-treemacs python helm-lsp lsp-mode ox-gfm vmd-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data multiple-cursors company-auctex auctex-latexmk auctex ranger importmagic swiper-helm xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help counsel ivy-hydra swiper minimap vimrc-mode dactyl-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mmm-mode markdown-toc markdown-mode htmlize gnuplot gh-md flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck auto-dictionary smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit transient git-commit with-editor helm-company helm-c-yasnippet fuzzy company-statistics company-anaconda company auto-yasnippet yasnippet ac-ispell jedi auto-complete jedi-core python-environment epc ctable concurrent deferred yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic spinner evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state iedit evil-exchange evil-ediff evil-args evil-anzu anzu evil undo-tree adaptive-wrap ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smartparens restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-unimpaired evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-escape goto-chg eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core popup async systemd))))
+    (vue-mode edit-indirect ssass-mode vue-html-mode ivy ox-gfm vmd-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data multiple-cursors company-auctex auctex-latexmk auctex ranger importmagic swiper-helm xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help counsel ivy-hydra swiper minimap vimrc-mode dactyl-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mmm-mode markdown-toc markdown-mode htmlize gnuplot gh-md flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck auto-dictionary smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit transient git-commit with-editor helm-company helm-c-yasnippet fuzzy company-statistics company-anaconda company auto-yasnippet yasnippet ac-ispell jedi auto-complete jedi-core python-environment epc ctable concurrent deferred yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic spinner evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state iedit evil-exchange evil-ediff evil-args evil-anzu anzu evil undo-tree adaptive-wrap ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smartparens restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-unimpaired evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-escape goto-chg eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core popup async systemd))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
