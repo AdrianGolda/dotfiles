@@ -41,10 +41,8 @@ values."
              python-backend 'lsp
              python-fill-column 79
              python-lsp-server 'mspyls
-
-             python-format-on-save t
              python-formatter 'yapf
-
+             ;; python-format-on-save t
              python-sort-imports-on-save t
              python-tab-width 4
              python-test-runner 'pytest
@@ -59,6 +57,7 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
+     imenu-list
      auto-completion
      (auto-completion :variables
                       auto-completion-return-key-behavior 'complete
@@ -363,6 +362,10 @@ you should place your code here."
   (add-hook 'python-mode-hook 'importmagic-mode)
 	(setq powerline-default-separator 'alternate)
   (setq dotspacemacs-distinguish-gui-tab t)
+  (setq spacemacs-default-jump-handlers
+        (remove 'evil-goto-definition spacemacs-default-jump-handlers))
+  (spacemacs/add-to-hooks 'turn-on-fci-mode '(text-mode-hook))
+  (spacemacs/add-to-hooks 'turn-off-fci-mode '(org-mode-hook))
   (global-company-mode)
   (setq python-shell-virtualenv-path ".venv/")
 
