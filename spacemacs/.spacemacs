@@ -363,6 +363,7 @@ you should place your code here."
   (global-company-mode)
   (setq python-shell-virtualenv-path ".venv/")
   (setq python-shell-extra-pythonpaths '("~/.pyenv/versions/3.7.4/lib/python3.7/site-packages"))
+  (setq magit-log-margin '(t "%d-%m-%Y" magit-log-margin-width t 20))
   )
   (defun pydebug ()
     (interactive) (dap-debug
