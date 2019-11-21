@@ -369,7 +369,26 @@ you should place your code here."
   (global-company-mode)
   (setq python-shell-virtualenv-path ".venv/")
   (setq python-shell-extra-pythonpaths '("~/.pyenv/versions/3.7.4/lib/python3.7/site-packages"))
-  (setq magit-log-margin '(t "%d-%m-%Y" magit-log-margin-width t 20))
+  (setq magit-log-margin '(t "%H:%M %d-%m-%Y" magit-log-margin-width t 20))
+
+  ;; OTHER
+  (defun move-line-up ()
+    "Move up the current line."
+    (interactive)
+    (transpose-lines 1)
+    (forward-line -2)
+    (indent-according-to-mode))
+
+  (defun move-line-down ()
+    "Move down the current line."
+    (interactive)
+    (forward-line 1)
+    (transpose-lines 1)
+    (forward-line -1)
+    (indent-according-to-mode))
+
+  (global-set-key [(meta k)]  'move-line-up)
+  (global-set-key [(meta j)]  'move-line-down)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
