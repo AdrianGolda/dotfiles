@@ -79,7 +79,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 alias zshconfig="vim ~/.zshrc && source ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
-export TERM=xterm-256color
 PROMPT="$PROMPT
 $ "
 
@@ -98,4 +97,7 @@ if [ -x "$(command -v $HOME/.pyenv/bin/pyenv)" ]; then
     export PATH="$HOME/.pyenv/bin:$PATH"
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
+fi
+if [[ $TERM != "eterm-color" ]]; then
+    export TERM=xterm-256color
 fi
