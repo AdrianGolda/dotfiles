@@ -63,7 +63,7 @@ values."
      imenu-list
      auto-completion
      (auto-completion :variables
-                      auto-completion-return-key-behavior 'complete
+                      auto-completion-return-key-behavior nil
                       auto-completion-tab-key-behavior 'complete
                       auto-completion-complete-with-key-sequence nil
                       auto-completion-complete-with-key-sequence-delay 0
@@ -311,7 +311,7 @@ values."
    dotspacemacs-line-numbers nil
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
-   dotspacemacs-folding-method 'evil
+   dotspacemacs-folding-method 'origami
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -358,6 +358,24 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+
+  (setq-default dotspacemacs-line-numbers t)
+  ;; MULTIPLE CURSORS
+  (defun evil--mc-make-cursor-at-col (startcol _endcol orig-line)
+    (move-to-column startcol)
+    (unless (= (line-number-at-pos) orig-line)
+      (evil-mc-make-cursor-here)))
+  (defun evil-mc-make-vertical-cursors (beg end)
+    (interactive (list (region-beginning) (region-end)))
+    (evil-mc-pause-cursors)
+    (apply-on-rectangle #'evil--mc-make-cursor-at-col
+                        beg end (line-number-at-pos (point)))
+    (evil-mc-resume-cursors)
+    (evil-normal-state)
+    (move-to-column (evil-mc-column-number (if (> end beg)
+                                               beg
+                                             end))))
+
   ;; VUE
   (setq js2-strict-missing-semi-warning nil)
   (setq-default
@@ -390,6 +408,7 @@ you should place your code here."
   (setq magit-log-margin '(t "%H:%M %d-%m-%Y" magit-log-margin-width t 20))
 
   ;; OTHER
+
   (defun move-line-up ()
     "Move up the current line."
     (interactive)
@@ -407,6 +426,45 @@ you should place your code here."
 
   (global-set-key [(meta k)]  'move-line-up)
   (global-set-key [(meta j)]  'move-line-down)
+(defun my/calculate-stops ()
+  (save-excursion
+    (let ((start
+           (condition-case e
+               (while t (backward-sexp))
+             (error (point))))
+          stops)
+      (push start stops)
+      (condition-case e
+          (while t
+            (forward-sexp)
+            (when (looking-at "\\s-*,")
+              (push (point) stops)))
+        (error (push (point) stops)))
+      (nreverse stops))))
+
+(defun my/transpose-args ()
+  (interactive)
+  (when (looking-at "\\s-") (backward-sexp))
+  (cl-loop with p = (point)
+           with previous = nil
+           for stop on (my/calculate-stops)
+           for i upfrom 0
+           when (<= p (car stop)) do
+           (when previous
+             (let* ((end (cadr stop))
+                    (whole (buffer-substring previous end))
+                    middle last)
+               (delete-region previous end)
+               (goto-char previous)
+               (setf middle (if (> i 1) (- (car stop) previous)
+                              (string-match "[^, \\t]" whole 
+                                            (- (car stop) previous)))
+                     last (if (> i 1) (substring whole 0 middle)
+                            (concat (substring whole (- (car stop) previous) middle)
+                                    (substring whole 0 (- (car stop) previous)))))
+               (insert (substring whole middle) last)))
+           (cl-return)
+           end do (setf previous (car stop))))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -438,7 +496,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (yaml-mode utop tuareg caml seeing-is-believing rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocopfmt rubocop rspec-mode robe rbenv rake ocp-indent ob-elixir mvn minitest meghanada maven-test-mode lsp-java groovy-mode groovy-imports pcache gradle-mode flycheck-ocaml merlin flycheck-mix flycheck-credo emojify emoji-cheat-sheet-plus dune company-emoji chruby bundler inf-ruby auto-complete-rst alchemist elixir-mode ivy ox-gfm vmd-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data multiple-cursors company-auctex auctex-latexmk auctex ranger importmagic swiper-helm xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help counsel ivy-hydra swiper minimap vimrc-mode dactyl-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mmm-mode markdown-toc markdown-mode htmlize gnuplot gh-md flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck auto-dictionary smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit transient git-commit with-editor helm-company helm-c-yasnippet fuzzy company-statistics company-anaconda company auto-yasnippet yasnippet ac-ispell jedi auto-complete jedi-core python-environment epc ctable concurrent deferred yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic spinner evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state iedit evil-exchange evil-ediff evil-args evil-anzu anzu evil undo-tree adaptive-wrap ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smartparens restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-unimpaired evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-escape goto-chg eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core popup async systemd))))
+    (origami ivy ox-gfm vmd-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data multiple-cursors company-auctex auctex-latexmk auctex ranger importmagic swiper-helm xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help counsel ivy-hydra swiper minimap vimrc-mode dactyl-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mmm-mode markdown-toc markdown-mode htmlize gnuplot gh-md flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck auto-dictionary smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit transient git-commit with-editor helm-company helm-c-yasnippet fuzzy company-statistics company-anaconda company auto-yasnippet yasnippet ac-ispell jedi auto-complete jedi-core python-environment epc ctable concurrent deferred yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic spinner evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state iedit evil-exchange evil-ediff evil-args evil-anzu anzu evil undo-tree adaptive-wrap ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smartparens restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-unimpaired evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-escape goto-chg eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core popup async systemd))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
