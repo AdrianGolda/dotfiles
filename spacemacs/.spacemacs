@@ -31,6 +31,9 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     (vue :location
+          (recipe :fetcher github
+                  :repo "thanhvg/vue"))
      html
      c-c++
      (c-c++ :variables
@@ -68,7 +71,7 @@ values."
      imenu-list
      auto-completion
      (auto-completion :variables
-                      auto-completion-return-key-behavior 'complete
+                      auto-completion-return-key-behavior nil
                       auto-completion-tab-key-behavior 'complete
                       auto-completion-complete-with-key-sequence nil
                       auto-completion-complete-with-key-sequence-delay 0
@@ -101,7 +104,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(systemd counsel ivy-hydra jedi importmagic vue-mode)
+   dotspacemacs-additional-packages '(systemd counsel ivy-hydra jedi importmagic)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -316,7 +319,7 @@ values."
    dotspacemacs-line-numbers nil
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
-   dotspacemacs-folding-method 'evil
+   dotspacemacs-folding-method 'origami
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -363,10 +366,43 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+
+  (setq-default dotspacemacs-line-numbers t)
+  ;; MULTIPLE CURSORS
+  (defun evil--mc-make-cursor-at-col (startcol _endcol orig-line)
+    (move-to-column startcol)
+    (unless (= (line-number-at-pos) orig-line)
+      (evil-mc-make-cursor-here)))
+  (defun evil-mc-make-vertical-cursors (beg end)
+    (interactive (list (region-beginning) (region-end)))
+    (evil-mc-pause-cursors)
+    (apply-on-rectangle #'evil--mc-make-cursor-at-col
+                        beg end (line-number-at-pos (point)))
+    (evil-mc-resume-cursors)
+    (evil-normal-state)
+    (move-to-column (evil-mc-column-number (if (> end beg)
+                                               beg
+                                             end))))
+
+  ;; VUE
+  (setq js2-strict-missing-semi-warning nil)
+  (setq-default
+
+   ;; WEB-MODE
+   web-mode-markup-indent-offset 2
+   web-mode-css-indent-offset 2
+   web-mode-code-indent-offset 2
+   web-mode-attr-indent-offset 2)
+
+  ;; RANGER
+  (setq-default dotspacemacs-configuration-layers
+                '(ranger :variables
+                         ranger-show-preview t))
+
+  ;; PYTHON
   (setq python-shell-interpreter "python3")
   (setq importmagic-python-interpreter "python3")
   (pyvenv-activate "~/.virtualenvs/emacs")
-
   (add-hook 'python-mode-hook 'importmagic-mode)
 	(setq powerline-default-separator 'alternate)
   (setq dotspacemacs-distinguish-gui-tab t)
@@ -377,7 +413,66 @@ you should place your code here."
   (global-company-mode)
   (setq python-shell-virtualenv-path ".venv/")
   (setq python-shell-extra-pythonpaths '("~/.pyenv/versions/3.7.4/lib/python3.7/site-packages"))
-  (setq magit-log-margin '(t "%d-%m-%Y" magit-log-margin-width t 20))
+  (setq magit-log-margin '(t "%H:%M %d-%m-%Y" magit-log-margin-width t 20))
+
+  ;; OTHER
+
+  (defun move-line-up ()
+    "Move up the current line."
+    (interactive)
+    (transpose-lines 1)
+    (forward-line -2)
+    (indent-according-to-mode))
+
+  (defun move-line-down ()
+    "Move down the current line."
+    (interactive)
+    (forward-line 1)
+    (transpose-lines 1)
+    (forward-line -1)
+    (indent-according-to-mode))
+
+  (global-set-key [(meta k)]  'move-line-up)
+  (global-set-key [(meta j)]  'move-line-down)
+(defun my/calculate-stops ()
+  (save-excursion
+    (let ((start
+           (condition-case e
+               (while t (backward-sexp))
+             (error (point))))
+          stops)
+      (push start stops)
+      (condition-case e
+          (while t
+            (forward-sexp)
+            (when (looking-at "\\s-*,")
+              (push (point) stops)))
+        (error (push (point) stops)))
+      (nreverse stops))))
+
+(defun my/transpose-args ()
+  (interactive)
+  (when (looking-at "\\s-") (backward-sexp))
+  (cl-loop with p = (point)
+           with previous = nil
+           for stop on (my/calculate-stops)
+           for i upfrom 0
+           when (<= p (car stop)) do
+           (when previous
+             (let* ((end (cadr stop))
+                    (whole (buffer-substring previous end))
+                    middle last)
+               (delete-region previous end)
+               (goto-char previous)
+               (setf middle (if (> i 1) (- (car stop) previous)
+                              (string-match "[^, \\t]" whole 
+                                            (- (car stop) previous)))
+                     last (if (> i 1) (substring whole 0 middle)
+                            (concat (substring whole (- (car stop) previous) middle)
+                                    (substring whole 0 (- (car stop) previous)))))
+               (insert (substring whole middle) last)))
+           (cl-return)
+           end do (setf previous (car stop))))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
