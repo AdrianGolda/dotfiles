@@ -36,6 +36,14 @@ values."
                   :repo "thanhvg/vue"))
      react
      html
+     c-c++
+     (c-c++ :variables
+            c-c++-backend 'rtags
+            c-c++-enable-rtags-completion nil
+            c-c++-enable-clang-format-on-save t
+            c-c++-enable-google-style t
+            c-c++-enable-google-newline t)
+
      javascript
      vimscript
      lsp
@@ -307,7 +315,7 @@ values."
    dotspacemacs-line-numbers nil
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
-   dotspacemacs-folding-method 'evil
+   dotspacemacs-folding-method 'origami
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -357,6 +365,24 @@ you should place your code here."
   ;; PACKAGES
   (add-to-list 'package-archives
                '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+  (setq-default dotspacemacs-line-numbers t)
+  ;; MULTIPLE CURSORS
+  (defun evil--mc-make-cursor-at-col (startcol _endcol orig-line)
+    (move-to-column startcol)
+    (unless (= (line-number-at-pos) orig-line)
+      (evil-mc-make-cursor-here)))
+  (defun evil-mc-make-vertical-cursors (beg end)
+    (interactive (list (region-beginning) (region-end)))
+    (evil-mc-pause-cursors)
+    (apply-on-rectangle #'evil--mc-make-cursor-at-col
+                        beg end (line-number-at-pos (point)))
+    (evil-mc-resume-cursors)
+    (evil-normal-state)
+    (move-to-column (evil-mc-column-number (if (> end beg)
+                                               beg
+                                             end))))
+
   ;; VUE
   (setq js2-strict-missing-semi-warning nil)
   (setq-default
@@ -382,7 +408,7 @@ you should place your code here."
   (setq magit-log-margin '(t "%H:%M %d-%m-%Y" magit-log-margin-width t 20))
 
   ;; OTHER
-  (set-face-attribute 'lazy-highlight nil :background "#005e05")
+
   (defun move-line-up ()
     "Move up the current line."
     (interactive)
