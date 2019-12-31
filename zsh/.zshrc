@@ -101,3 +101,4 @@ fi
 if [[ $TERM != "eterm-color" ]]; then
     export TERM=xterm-256color
 fi
+source virtualenvwrapper.sh

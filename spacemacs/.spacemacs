@@ -51,11 +51,12 @@ values."
      (python :variables
              python-backend 'lsp
              python-fill-column 79
-             python-lsp-server 'mspyls
+             python-lsp-server 'pyls
              python-formatter 'yapf
              ;; python-format-on-save t
              python-sort-imports-on-save t
              python-tab-width 4
+             python-indent-offset 4
              python-test-runner 'pytest
 
              ;; python-auto-set-local-pyenv-version 'on-visit
@@ -86,7 +87,8 @@ values."
      git
      markdown
      (markdown :variables markdown-live-preview-engine 'vmd)
-     ranger
+     (ranger :variables ranger-show-preview t)
+
      multiple-cursors
      org
      (org :variables
@@ -395,15 +397,20 @@ you should place your code here."
    web-mode-attr-indent-offset 2)
 
   ;; RANGER
-  (setq-default dotspacemacs-configuration-layers
-                '(ranger :variables
-                         ranger-show-preview t))
 
   ;; PYTHON
-  (setq python-shell-interpreter "python3")
-  (setq importmagic-python-interpreter "python3")
+  ;; (setq python-shell-interpreter "python3")
+  ;; (setq importmagic-python-interpreter "python3")
   (pyvenv-activate "~/.virtualenvs/emacs")
   (add-hook 'python-mode-hook 'importmagic-mode)
+  (add-hook 'python-mode-hook 'spacemacs/toggle-fill-column-indicator-on)
+  (setq python-shell-virtualenv-path ".venv/")
+  (setq python-shell-extra-pythonpaths '("~/.pyenv/versions/3.7.4/lib/python3.7/site-packages"))
+
+  ;; MAGIT
+  (setq magit-log-margin '(t "%H:%M %d-%m-%Y" magit-log-margin-width t 20))
+
+  ;; OTHER
 	(setq powerline-default-separator 'alternate)
   (setq dotspacemacs-distinguish-gui-tab t)
   (setq spacemacs-default-jump-handlers
@@ -411,11 +418,6 @@ you should place your code here."
   (spacemacs/add-to-hooks 'turn-on-fci-mode '(text-mode-hook))
   (spacemacs/add-to-hooks 'turn-off-fci-mode '(org-mode-hook))
   (global-company-mode)
-  (setq python-shell-virtualenv-path ".venv/")
-  (setq python-shell-extra-pythonpaths '("~/.pyenv/versions/3.7.4/lib/python3.7/site-packages"))
-  (setq magit-log-margin '(t "%H:%M %d-%m-%Y" magit-log-margin-width t 20))
-
-  ;; OTHER
 
   (defun move-line-up ()
     "Move up the current line."
@@ -434,6 +436,7 @@ you should place your code here."
 
   (global-set-key [(meta k)]  'move-line-up)
   (global-set-key [(meta j)]  'move-line-down)
+
 (defun my/calculate-stops ()
   (save-excursion
     (let ((start
