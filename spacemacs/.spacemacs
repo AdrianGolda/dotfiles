@@ -366,6 +366,7 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
   (setq-default dotspacemacs-line-numbers t)
+  (add-hook 'python-mode-hook 'delete-trailing-whitespace)
 
   ;; MULTIPLE CURSORS
   (defun evil--mc-make-cursor-at-col (startcol _endcol orig-line)
