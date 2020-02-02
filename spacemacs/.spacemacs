@@ -357,6 +357,8 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (setq lsp-enable-snippet nil)
+
+  (define-key evil-insert-state-map (kbd "<C-tab>") 'yas-expand)
   ;; PACKAGES
   (add-to-list 'package-archives
                '("melpa" . "http://melpa.milkbox.net/packages/") t)
@@ -488,7 +490,7 @@ you should place your code here."
 
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
-This is an auto-generated function, do not modify its content directly, use
+  This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
 (custom-set-variables
